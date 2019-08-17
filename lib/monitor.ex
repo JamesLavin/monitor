@@ -1,6 +1,8 @@
 defmodule Monitor do
   @moduledoc """
-  Documentation for Monitor.
+  Monitor provides a simple (but hopefully -- eventually -- powerful) API
+  for querying and monitoring the status of servers, server processes,
+  Elixir nodes, and Elixir process
   """
 
   @doc """
