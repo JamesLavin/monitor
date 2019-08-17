@@ -22,10 +22,34 @@ To find the PID of the `Monitor.Server` on the local node:
 {Monitor.Server, node()} |> :global.whereis_name()
 ```
 
+or
+
+```elixir
+Monitor.Server.monitor_pid()
+```
+
 To find the PID of the `Monitor.Server` on a named node:
 
 ```elixir
 {Monitor.Server, :"m2@127.0.0.1"} |> :global.whereis_name()
+```
+
+or
+
+```elixir
+:"m2@127.0.0.1" |> Monitor.Server.monitor_pid()
+```
+
+To look up the current node's memory usage:
+
+```elixir
+Monitor.Server.mem
+```
+
+To look up a specific node's memory usage:
+
+```elixir
+node() |> Monitor.Server.monitor_pid |> Monitor.Server.mem
 ```
 
 ## Installation
