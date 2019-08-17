@@ -3,7 +3,7 @@ defmodule Monitor.Server do
   alias Monitor.Impl
 
   def start_link(state) do
-    GenServer.start_link(__MODULE__, state, name: __MODULE__)
+    {:ok, pid} = GenServer.start_link(__MODULE__, state, name: {:global, {__MODULE__, node()}})
   end
 
   @spec init(any) :: {:ok, any}
