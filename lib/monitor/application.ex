@@ -6,7 +6,7 @@ defmodule Monitor.Application do
   @spec start(any, any) :: {:error, any} | {:ok, pid}
   def start(_type, _args) do
     children = [
-      {Monitor.Server, []}
+      {Monitor.Server, %{}}
     ]
 
     opts = [strategy: :one_for_one, name: Monitor.Supervisor]
