@@ -24,6 +24,38 @@ defmodule Monitor.Server do
     GenServer.call(pid, :mem)
   end
 
+  def sys_mem do
+    GenServer.call(monitor_pid(), :sys_mem)
+  end
+
+  def sys_mem(pid) when is_pid(pid) do
+    GenServer.call(pid, :sys_mem)
+  end
+
+  def disk do
+    GenServer.call(monitor_pid(), :disk)
+  end
+
+  def disk(pid) when is_pid(pid) do
+    GenServer.call(pid, :disk)
+  end
+
+  def cpu do
+    GenServer.call(monitor_pid(), :cpu)
+  end
+
+  def cpu(pid) when is_pid(pid) do
+    GenServer.call(pid, :cpu)
+  end
+
+  def unix_procs do
+    GenServer.call(monitor_pid(), :unix_procs)
+  end
+
+  def unix_procs(pid) when is_pid(pid) do
+    GenServer.call(pid, :unix_procs)
+  end
+
   @spec monitor_name :: {:global, {Monitor.Server, atom}}
   def monitor_name do
     {:global, {__MODULE__, node()}}
@@ -52,5 +84,33 @@ defmodule Monitor.Server do
   @impl true
   def handle_call(:mem, _from, state) do
     {:reply, Impl.mem(), state}
+  end
+
+  @impl true
+  def handle_call(:sys_mem, _from, state) do
+    {:reply, Impl.sys_mem(), state}
+  end
+
+  @impl true
+  def handle_call(:disk, _from, state) do
+    {:reply, Impl.disk(), state}
+  end
+
+  @impl true
+  def handle_call(:cpu, _from, state) do
+    {:reply, Impl.cpu(), state}
+  end
+
+  @impl true
+  def handle_call(:unix_procs, _from, state) do
+    {:reply, Impl.num_unix_procs(), state}
+  end
+
+  def handle_call(_, _from, state) do
+    {:reply, nil, state}
+  end
+
+  def handle_cast(_, _from, state) do
+    {:noreply, state}
   end
 end
