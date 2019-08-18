@@ -10,7 +10,12 @@ defmodule Monitor.Server do
   @impl true
   @spec init(any) :: {:ok, any}
   def init(state \\ %{}) do
-    IO.inspect("Starting monitoring")
+    IO.inspect(
+      "Starting a Monitor.Server on node #{inspect(node())} with PID #{inspect(monitor_pid)} and name #{
+        inspect(monitor_name)
+      }"
+    )
+
     :application.start(:sasl)
     :application.start(:os_mon)
     {:ok, state}
