@@ -9,6 +9,7 @@ defmodule Monitor.MixProject do
       description:
         "A rudimentary (but hopefully -- eventually -- simple & powerful) API for querying and monitoring the status of servers, server processes, Elixir nodes, and Elixir processes",
       package: package(),
+      docs: docs(),
       start_permanent: Mix.env() == :prod,
       deps: deps()
     ]
@@ -26,6 +27,12 @@ defmodule Monitor.MixProject do
       {:dialyxir, "~> 1.0.0-rc.6", only: [:dev], runtime: false},
       {:ex_doc, "~> 0.21", only: :dev, runtime: false},
       {:recursive_selective_match, "~> 0.2.6", only: [:test]}
+    ]
+  end
+
+  defp docs do
+    [
+      extras: ["README.md"]
     ]
   end
 
