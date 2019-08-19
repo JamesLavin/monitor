@@ -42,8 +42,7 @@ defmodule Monitor.MixProject do
       maintainers: ["James Lavin"],
       licenses: ["Apache-2.0"],
       links: %{"Github" => "https://github.com/JamesLavin/monitor"},
-      files: ~w(lib priv .formatter.exs mix.exs README* readme* LICENSE*
-      license* CHANGELOG* changelog* src test)
+      files: ~w(lib .formatter.exs mix.exs README* test)
     ]
   end
 end
