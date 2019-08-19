@@ -35,6 +35,41 @@ defmodule MonitorTest do
     assert RSM.matches?(expected, sys_mem)
   end
 
+  test "a Monitor.Server returns disk information" do
+    disk = Monitor.Server.disk()
+
+    expected = %{
+      disk_id: &Regex.match?(~r/\/.*/, &1),
+      pct_used: &valid_percentage/1,
+      total_kbytes: :any_pos_integer
+    }
+
+    assert RSM.includes?(expected, disk)
+  end
+
+  test "a Monitor.Server returns CPU information" do
+    cpu = Monitor.Server.cpu()
+
+    expected = %{
+      cpu_rup_load_15_mins: :any_non_neg_float,
+      cpu_rup_load_1_min: :any_non_neg_float,
+      cpu_rup_load_5_mins: :any_non_neg_float,
+      cpu_usage_pct: &valid_percentage/1
+    }
+
+    assert RSM.matches?(expected, cpu)
+  end
+
+  test "a Monitor.Server returns Unix processes information" do
+    unix_procs = Monitor.Server.unix_procs()
+
+    expected = %{
+      num_unix_procs: :any_pos_integer
+    }
+
+    assert RSM.matches?(expected, unix_procs)
+  end
+
   defp valid_percentage(val) do
     is_float(val) && val >= 0 && val <= 100
   end
