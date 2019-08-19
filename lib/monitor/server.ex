@@ -11,8 +11,8 @@ defmodule Monitor.Server do
   @spec init(any) :: {:ok, any}
   def init(state \\ %{}) do
     IO.inspect(
-      "Starting a Monitor.Server on node #{inspect(node())} with PID #{inspect(monitor_pid)} and name #{
-        inspect(monitor_name)
+      "Starting a Monitor.Server on node #{inspect(node())} with PID #{inspect(monitor_pid())} and name #{
+        inspect(monitor_name())
       }"
     )
 
@@ -21,26 +21,32 @@ defmodule Monitor.Server do
     {:ok, state}
   end
 
+  @spec mem :: map()
   def mem do
     GenServer.call(monitor_pid(), :mem)
   end
 
+  @spec mem(pid()) :: map()
   def mem(pid) when is_pid(pid) do
     GenServer.call(pid, :mem)
   end
 
+  @spec sys_mem :: map()
   def sys_mem do
     GenServer.call(monitor_pid(), :sys_mem)
   end
 
+  @spec sys_mem(pid()) :: map()
   def sys_mem(pid) when is_pid(pid) do
     GenServer.call(pid, :sys_mem)
   end
 
+  @spec disk :: map()
   def disk do
     GenServer.call(monitor_pid(), :disk)
   end
 
+  @spec disk(pid()) :: map()
   def disk(pid) when is_pid(pid) do
     GenServer.call(pid, :disk)
   end
