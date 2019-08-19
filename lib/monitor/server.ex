@@ -51,18 +51,22 @@ defmodule Monitor.Server do
     GenServer.call(pid, :disk)
   end
 
+  @spec cpu :: map()
   def cpu do
     GenServer.call(monitor_pid(), :cpu)
   end
 
+  @spec cpu(pid()) :: map()
   def cpu(pid) when is_pid(pid) do
     GenServer.call(pid, :cpu)
   end
 
+  @spec unix_procs :: map()
   def unix_procs do
     GenServer.call(monitor_pid(), :unix_procs)
   end
 
+  @spec unix_procs(pid()) :: map()
   def unix_procs(pid) when is_pid(pid) do
     GenServer.call(pid, :unix_procs)
   end
