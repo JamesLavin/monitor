@@ -22,7 +22,8 @@ defmodule Monitor.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:dialyxir, "~> 1.0.0-rc.6", only: [:dev], runtime: false}
+      {:dialyxir, "~> 1.0.0-rc.6", only: [:dev], runtime: false},
+      {:recursive_selective_match, "~> 0.2.6"}
     ]
   end
 end
