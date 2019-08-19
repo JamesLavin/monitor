@@ -4,7 +4,7 @@ defmodule Monitor.MixProject do
   def project do
     [
       app: :monitor,
-      version: "0.1.0",
+      version: "0.1.1",
       elixir: "~> 1.9",
       description:
         "A rudimentary (but hopefully -- eventually -- simple & powerful) API for querying and monitoring the status of servers, server processes, Elixir nodes, and Elixir processes",
